@@ -1,0 +1,14 @@
+1. what is os
+2. why is os
+3. dont have a os in system what will happen
+4. what are the functions of operating system explain
+5. what is a process
+6. what is program
+7. how to differentiate a process and program threat
+8. how is os program work
+9. User Mode and Kernel Mode
+10. what is context switching in os
+11. System Call
+12. Types of Operating Systems/ eg of os
+13. Thread in Operating System
+14. when the system call trigger
