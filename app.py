@@ -70,24 +70,21 @@ def chat():
         session["history"] = []
     session["history"].append(user_message)
 
-   # 1️⃣ Greeting & Time-aware greetings
-greetings = ["hi", "hello", "hey"]
-morning_words = ["good morning"]
-afternoon_words = ["good afternoon"]
-evening_words = ["good evening"]
-bye_words = ["bye", "goodbye", "see you", "exit"]
+    # 1️⃣ Greeting & Time-aware greetings
+    greetings = ["hi", "hello", "hey"]
+    morning_words = ["good morning"]
+    afternoon_words = ["good afternoon"]
+    evening_words = ["good evening"]
+    bye_words = ["bye", "goodbye", "see you", "exit"]
 
-if user_message in greetings:
-    return jsonify({"reply": f"{time_greeting()} 😊 How can I help you today?"})
+    if user_message in greetings:
+        return jsonify({"reply": f"{time_greeting()} 😊 How can I help you today?"})
 
-# If user says good morning/afternoon/evening, reply correctly to current time
-if user_message in morning_words + afternoon_words + evening_words:
-    return jsonify({"reply": f"{time_greeting()} 😊 How can I help you today?"})
+    if user_message in morning_words + afternoon_words + evening_words:
+        return jsonify({"reply": f"{time_greeting()} 😊 How can I help you today?"})
 
-# Bye intent (without ML)
-if user_message in bye_words:
-    return jsonify({"reply": "Goodbye! Have a great day 👋"})
-
+    if user_message in bye_words:
+        return jsonify({"reply": "Goodbye! Have a great day 👋"})
 
     # 2️⃣ FAQ reply
     faq_reply = check_faq(user_message)
@@ -108,7 +105,6 @@ if user_message in bye_words:
     probs = model.predict_proba(X_test)[0]
     max_prob = max(probs)
 
-    # If confidence is low → fallback
     if max_prob < 0.35:
         return jsonify({
             "reply": (
@@ -124,10 +120,8 @@ if user_message in bye_words:
         if intent["tag"] == predicted_tag:
             return jsonify({"reply": random.choice(intent["responses"])})
 
-    # 6️⃣ Final fallback (safety)
-    return jsonify({
-        "reply": "Please ask questions related to the college."
-    })
+    # 6️⃣ Final fallback
+    return jsonify({"reply": "Please ask questions related to the college."})
 
 
 if __name__ == "__main__":
